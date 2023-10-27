@@ -12,7 +12,6 @@ public class AutomotiveQuoteGUI implements ActionListener {
 
     double total;
 
-
     AutomotiveQuoteGUI(){
         //create the frame
         JFrame jfrm = new JFrame ("Joe's Automotive Service Quote");
@@ -20,6 +19,7 @@ public class AutomotiveQuoteGUI implements ActionListener {
         jfrm.setLayout(new FlowLayout());
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //implement checkboxes and action listeners
         JLabel routine = new JLabel("<html><B>Regular Routine Services");
         oilChange = new JCheckBox("Oil Change - $36.00");
         oilChange.addActionListener(this);
@@ -42,11 +42,13 @@ public class AutomotiveQuoteGUI implements ActionListener {
         partsPrice.setEditable(false);
         parts.addActionListener(this);
 
+        //
         labor = new JCheckBox("Labor - 20.00 x per hour: ");
         numOfHours = new JTextField(2);
         numOfHours.setEditable(false);
         labor.addActionListener(this);
 
+        //button to add print total
         totalPrice = new JButton("Total");
         totalPrice.addActionListener(this);
 
@@ -54,6 +56,7 @@ public class AutomotiveQuoteGUI implements ActionListener {
         totalNum = new JTextField(5);
         totalNum.setEditable(false);
 
+        //add to content pane
         jfrm.getContentPane().add(routine);
         jfrm.getContentPane().add(oilChange);
         jfrm.getContentPane().add(lubeJob);
@@ -68,7 +71,6 @@ public class AutomotiveQuoteGUI implements ActionListener {
         jfrm.getContentPane().add(partsPrice);
         jfrm.getContentPane().add(totalPrice);
         jfrm.getContentPane().add(totalNum);
-
 
         jfrm.setVisible(true);
     }
@@ -97,17 +99,19 @@ public class AutomotiveQuoteGUI implements ActionListener {
             total += 20.00;
         }
 
+        //when pressed, it takes the value from the text field and adds it to double
         if(labor.isSelected()){
             numOfHours.setEditable(true);
             hours = Double.parseDouble(numOfHours.getText());
         }
+        //when unpressed, text field is uneditable
         if(!labor.isSelected()){
             numOfHours.setEditable(false);
         }
+        //when pressed, it adds the price for parts to total
         if(parts.isSelected()){
             partsPrice.setEditable(true);
-            total = Double.parseDouble(partsPrice.getText());
-
+            total += Double.parseDouble(partsPrice.getText());
         }
         //make uneditable if not selected
         if(!parts.isSelected()){
@@ -117,7 +121,7 @@ public class AutomotiveQuoteGUI implements ActionListener {
         //if button is pressed, total is outputted
         if(e.getActionCommand().equals("Total")){
             total += hours * 20;
-            totalNum.setText("$" + total);
+            totalNum.setText("$" + String.format("%.2f", total));
             total = 0;
         }
     }
