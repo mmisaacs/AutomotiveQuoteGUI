@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +20,13 @@ public class AutomotiveQuoteGUI implements ActionListener {
         jfrm.setSize(300,400);
         jfrm.setLayout(new FlowLayout());
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //create title
+        Border rBevelBorder = BorderFactory.createBevelBorder(BevelBorder.RAISED);
+        JLabel joes = new JLabel(" Joe's Automotive ");
+        joes.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        joes.setBorder(rBevelBorder);
+
 
         //implement checkboxes and action listeners
         JLabel routine = new JLabel("<html><B>Regular Routine Services");
@@ -57,20 +66,21 @@ public class AutomotiveQuoteGUI implements ActionListener {
         totalNum.setEditable(false);
 
         //add to content pane
-        jfrm.getContentPane().add(routine);
-        jfrm.getContentPane().add(oilChange);
-        jfrm.getContentPane().add(lubeJob);
-        jfrm.getContentPane().add(radiatorFlush);
-        jfrm.getContentPane().add(inspection);
-        jfrm.getContentPane().add(muffler);
-        jfrm.getContentPane().add(rotation);
-        jfrm.getContentPane().add(nonRoutine);
-        jfrm.getContentPane().add(labor);
-        jfrm.getContentPane().add(numOfHours);
-        jfrm.getContentPane().add(parts);
-        jfrm.getContentPane().add(partsPrice);
-        jfrm.getContentPane().add(totalPrice);
-        jfrm.getContentPane().add(totalNum);
+        jfrm.add(joes);
+        jfrm.add(routine);
+        jfrm.add(oilChange);
+        jfrm.add(lubeJob);
+        jfrm.add(radiatorFlush);
+        jfrm.add(inspection);
+        jfrm.add(muffler);
+        jfrm.add(rotation);
+        jfrm.add(nonRoutine);
+        jfrm.add(labor);
+        jfrm.add(numOfHours);
+        jfrm.add(parts);
+        jfrm.add(partsPrice);
+        jfrm.add(totalPrice);
+        jfrm.add(totalNum);
 
         jfrm.setVisible(true);
     }
